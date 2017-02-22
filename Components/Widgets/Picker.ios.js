@@ -90,6 +90,24 @@ export default class PickerNB extends NativeBaseComponent {
         return React.cloneElement(this.props.iosIcon, {style: {fontSize: 22, lineHeight: 26, color: '#7a7a7a' }})
     }
 
+    renderButton() {
+        const onPress = () => { this._setModalVisible(true); };
+        if (this.props.renderButton) {
+        return this.props.renderButton(onPress);
+        }
+        return <Button
+        style={this.props.style}
+        dark
+        picker
+        transparent
+        onPress={onPress}
+        >
+        <Text note={(this.props.note)} style={this.props.textStyle}>{this.state.currentLabel ? this.state.currentLabel : this.props.defaultLabel}</Text>
+        {(this.props.iosIcon === undefined) ? null : this.renderIcon()}
+        </Button>;
+    }
+
+
     renderHeader() {
         return (this.props.headerComponent) ? this.modifyHeader() : (<Header >
             <Button transparent onPress={() => {this._setModalVisible(false)}}>Back</Button>
@@ -104,15 +122,7 @@ export default class PickerNB extends NativeBaseComponent {
         }
         return (
         <View ref={c => this._root = c}>
-            <Button
-                iconRight={(this.props.iosIcon== undefined) ? false : true}
-                transparent
-                textStyle={this.props.textStyle}
-                style={[this.props.style,additionalProps]}
-                onPress={() => {this._setModalVisible(true)}}>
-                {this.state.currentLabel}
-                {(this.props.iosIcon == undefined) ? <View style={{ width: 0, height: 0 }} /> : this.renderIcon()}
-            </Button>
+            {this.renderButton()}
             <Modal animationType='slide'
                 transparent={false}
                 visible={this.state.modalVisible}
