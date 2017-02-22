@@ -93,7 +93,7 @@ export default class PickerNB extends NativeBaseComponent {
     renderButton() {
         const onPress = () => { this._setModalVisible(true); };
         if (this.props.renderButton) {
-        return this.props.renderButton(onPress);
+        return this.props.renderButton(onPress, this);
         }
         return <Button
         style={this.props.style}
