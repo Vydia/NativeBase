@@ -31,7 +31,7 @@ export default class BadgeNB extends NativeBaseComponent {
                             this.getTheme().badgeBg,
             padding: (Platform.OS === 'ios') ? 3 : 0,
             paddingHorizontal: 10,
-            alignSelf: 'flex-start',
+            alignSelf: 'flex-end',
             borderRadius: 13.5,
             height: 27
 
