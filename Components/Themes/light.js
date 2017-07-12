@@ -5,7 +5,7 @@ import {Platform} from 'react-native';
 export default {
 
     // Badge
-    badgeBg: '#ED1727',
+    badgeBg: '#41BEED',
     badgeColor: '#fff',
 
 
